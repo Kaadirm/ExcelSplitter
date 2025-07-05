@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel Splitter</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1 class="app-title">
+                    <span class="app-icon">✂️</span>
+                    Excel Splitter
+                </h1>
+                <p class="app-subtitle">Split your Excel files based on Model Kodu and PT columns</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                
+                <!-- File Selection Section -->
+                <section class="file-section">
+                    <div class="section-header">
+                        <h2>📁 Select Excel File</h2>
+                        <p>Choose an Excel file (.xlsx or .xls) to split based on Model Kodu and PT columns</p>
+                    </div>
+                    
+                    <div class="file-input-area">
+                        <button class="file-select-btn" id="selectFileBtn">
+                            <span class="btn-icon">📂</span>
+                            Select Excel File
+                        </button>
+                        
+                        <div class="file-info" id="fileInfo" style="display: none;">
+                            <div class="file-details">
+                                <div class="file-name" id="fileName"></div>
+                                <div class="file-path" id="filePath"></div>
+                                <div class="file-size" id="fileSize"></div>
+                                <div class="file-rows" id="fileRows"></div>
+                            </div>
+                            <button class="change-file-btn" id="changeFileBtn">Change File</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Split Configuration Section -->
+                <section class="split-section">
+                    <div class="section-header">
+                        <h2>✂️ Split Configuration</h2>
+                        <p>Configure how many files to split into</p>
+                    </div>
+                    
+                    <div class="split-options">
+                        <div class="split-input-group">
+                            <label for="numberOfFiles">Number of files to split into:</label>
+                            <input type="number" id="numberOfFiles" min="1" value="2" class="split-input">
+                            
+                            <!-- 7000 Row Limit Toggle -->
+                            <div class="row-limit-options">
+                                <label class="row-limit-label">Row limit per file:</label>
+                                <div class="radio-group">
+                                    <label class="radio-option">
+                                        <input type="radio" name="rowLimit" value="enforce" id="enforceLimit" checked>
+                                        <span class="radio-text">🎯 Auto-optimize for ~7,000 rows per file (ignores input number)</span>
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="rowLimit" value="noLimit" id="noLimit">
+                                        <span class="radio-text">🔓 No row limit (split freely)</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="split-info" id="splitInfo">
+                                <p>Files will be split intelligently keeping PT groups together when possible. If a PT group is too large (>8000 rows), it may be split across files to maintain the 7000 row limit.</p>
+                                <p>If these columns have the same values, rows will stay in the same file.</p>
+                                <p id="limitInfo"><strong>Files will target ~7,000 rows but may exceed to keep groups together.</strong></p>
+                                <p>✨ <em>Data will be sorted by Model Kodu (A-Z) before splitting!</em></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Action Section -->
+                <section class="action-section">
+                    <div class="action-area">
+                        <button class="process-btn" id="processBtn" disabled>
+                            <span class="btn-icon">✂️</span>
+                            <span class="btn-text">Split Excel File</span>
+                            <div class="btn-spinner" id="btnSpinner"></div>
+                        </button>
+                        
+                        <div class="progress-container" id="progressContainer" style="display: none;">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progressFill"></div>
+                            </div>
+                            <div class="progress-text" id="progressText">Splitting...</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Status Section -->
+                <section class="status-section">
+                    <div class="status-messages" id="statusMessages"></div>
+                </section>
+
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <span>Excel Splitter v1.0.0</span>
+                    <span>•</span>
+                    <span>Desktop Application</span>
+                </div>
+                <div class="footer-stats" id="footerStats">
+                    Ready to split Excel files
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

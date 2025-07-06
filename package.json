@@ -65,18 +65,16 @@
         {
           "target": "nsis",
           "arch": ["x64"]
-        },
-        {
-          "target": "appx",
-          "arch": ["x64"]
         }
       ],
       "icon": "assets/icon.ico",
       "artifactName": "${productName}-${version}-${arch}.${ext}",
-      "publisherName": "CN=Excel Splitter Team",
+      "publisherName": "Excel Splitter Team",
       "verifyUpdateCodeSignature": false,
       "requestedExecutionLevel": "asInvoker",
-      "executableName": "Excel Splitter"
+      "executableName": "Excel Splitter",
+      "signingHashAlgorithms": ["sha256"],
+      "legalTrademarks": "Excel Splitter Team"
     },
     "nsis": {
       "oneClick": true,
@@ -88,7 +86,8 @@
       "allowElevation": false,
       "perMachine": false,
       "runAfterFinish": false,
-      "deleteAppDataOnUninstall": false
+      "deleteAppDataOnUninstall": false,
+      "include": "nsis-custom.nsh"
     },
     "appx": {
       "applicationId": "ExcelSplitter",
@@ -100,7 +99,8 @@
       "addAutoLaunchExtension": false
     },
     "linux": {
-      "target": "AppImage"
+      "target": "AppImage",
+      "category": "Utility"
     }
   },
   "keywords": [

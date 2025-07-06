@@ -12,6 +12,7 @@
     "build-win": "electron-builder --win",
     "build-win-portable": "electron-builder --win --config.win.target=portable",
     "build-win-installer": "electron-builder --win --config.win.target=nsis",
+    "build-win-msix": "electron-builder --win --config.win.target=appx",
     "build-linux": "electron-builder --linux",
     "dist": "electron-builder",
     "postinstall": "electron-builder install-app-deps"
@@ -66,23 +67,37 @@
           "arch": ["x64"]
         },
         {
-          "target": "portable",
+          "target": "appx",
           "arch": ["x64"]
         }
       ],
       "icon": "assets/icon.ico",
       "artifactName": "${productName}-${version}-${arch}.${ext}",
-      "publisherName": "Excel Splitter",
-      "verifyUpdateCodeSignature": true,
-      "requestedExecutionLevel": "asInvoker"
+      "publisherName": "CN=Excel Splitter Team",
+      "verifyUpdateCodeSignature": false,
+      "requestedExecutionLevel": "asInvoker",
+      "executableName": "Excel Splitter"
     },
     "nsis": {
-      "oneClick": false,
-      "allowToChangeInstallationDirectory": true,
+      "oneClick": true,
+      "allowToChangeInstallationDirectory": false,
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
       "shortcutName": "Excel Splitter",
-      "uninstallDisplayName": "Excel Splitter"
+      "uninstallDisplayName": "Excel Splitter",
+      "allowElevation": false,
+      "perMachine": false,
+      "runAfterFinish": false,
+      "deleteAppDataOnUninstall": false
+    },
+    "appx": {
+      "applicationId": "ExcelSplitter",
+      "displayName": "Excel Splitter",
+      "publisherDisplayName": "Excel Splitter Team",
+      "identityName": "ExcelSplitter",
+      "backgroundColor": "#ffffff",
+      "showNameOnTiles": true,
+      "addAutoLaunchExtension": false
     },
     "linux": {
       "target": "AppImage"
@@ -95,6 +110,11 @@
     "desktop",
     "electron"
   ],
-  "author": "",
-  "license": "MIT"
+  "author": "Excel Splitter Team",
+  "license": "MIT",
+  "homepage": "https://rococo-dusk-9d3785.netlify.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Kaadirm/ExcelSplitter"
+  }
 }

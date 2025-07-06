@@ -1,0 +1,16 @@
+# Netlify Settings
+[build]
+  publish = "."
+
+[[headers]]
+  for = "/ExcelSplitter-1.0.0-x64.exe"
+  [headers.values]
+    Content-Type = "application/octet-stream"
+    Content-Disposition = "attachment; filename=ExcelSplitter-1.0.0-x64.exe"
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
